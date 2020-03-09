@@ -1,0 +1,99 @@
+services:
+    cisse.easy_admin_plus.command.user.create:
+          class: Cisse\EasyAdminPlusBundle\Auth\Command\UserCreateCommand
+          tags:
+              -  { name: console.command, command: cisse:easy-admin-plus:user:create }
+    cisse.easy_admin_plus.command.user.remove:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserRemoveCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:remove }
+    cisse.easy_admin_plus.command.user.change_password:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserChangePasswordCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:change-password }
+    cisse.easy_admin_plus.command.user.enable:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserEnableCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:enable }
+    cisse.easy_admin_plus.command.user.disable:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserDisableCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:disable }
+    cisse.easy_admin_plus.command.user.add_roles:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserAddRolesCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:add-roles }
+    cisse.easy_admin_plus.command.user.remove_roles:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserRemoveRolesCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:remove-roles }
+    cisse.easy_admin_plus.command.user.set_roles:
+        class: Cisse\EasyAdminPlusBundle\Auth\Command\UserSetRolesCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:user:set-roles }
+
+    cisse.easy_admin_plus.translator:
+        class: Cisse\EasyAdminPlusBundle\Translator\Translator
+        public: true
+        arguments:
+            - '%easy_admin_plus%'
+            - '%kernel.cache_dir%'
+
+    cisse.easy_admin_plus.acl.security.admin_authorization_checker:
+        class: Cisse\EasyAdminPlusBundle\Acl\Security\AdminAuthorizationChecker
+        public: true
+        arguments:
+            - '@security.authorization_checker'
+    cisse.easy_admin_plus.acl.event_listener.easy_admin_subscriber:
+        class: Cisse\EasyAdminPlusBundle\Acl\EventListener\EasyAdminSubscriber
+        arguments:
+            - '@cisse.easy_admin_plus.acl.security.admin_authorization_checker'
+        tags:
+            - { name: kernel.event_subscriber }
+    cisse.easy_admin_plus.acl.twig.admin_authorization_extension:
+        class: Cisse\EasyAdminPlusBundle\Acl\Twig\AdminAuthorizationExtension
+        arguments:
+            - '@cisse.easy_admin_plus.acl.security.admin_authorization_checker'
+        tags:
+            - { name: twig.extension }
+
+    cisse.easy_admin_plus.exporter.configuration.normalizer_config_pass:
+        class: Cisse\EasyAdminPlusBundle\Exporter\Configuration\NormalizerConfigPass
+        public: true
+    cisse.easy_admin_plus.exporter.configuration.property_config_pass:
+        class: Cisse\EasyAdminPlusBundle\Exporter\Configuration\PropertyConfigPass
+        public: true
+    cisse.easy_admin_plus.exporter.configuration.template_config_pass:
+        class: Cisse\EasyAdminPlusBundle\Exporter\Configuration\TemplateConfigPass
+        public: true
+
+    cisse.easy_admin_plus.generator.base:
+        abstract: true
+        autowire: true
+        calls:
+            - method: buildServiceConfig
+    cisse.easy_admin_plus.generator.generate:
+        class: Cisse\EasyAdminPlusBundle\Generator\Service\GeneratorGenerate
+        public: true
+        parent: cisse.easy_admin_plus.generator.base
+    cisse.easy_admin_plus.generator.clean:
+        class: Cisse\EasyAdminPlusBundle\Generator\Service\GeneratorClean
+        public: true
+        parent: cisse.easy_admin_plus.generator.base
+    cisse.easy_admin_plus.generator.entity:
+        class: Cisse\EasyAdminPlusBundle\Generator\Service\GeneratorEntity
+        public: true
+        parent: cisse.easy_admin_plus.generator.base
+
+    cisse.easy_admin_plus.command.generator.generate:
+        class: Cisse\EasyAdminPlusBundle\Generator\Command\GeneratorGenerateCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:generator:generate }
+    cisse.easy_admin_plus.command.generator.clean:
+        class: Cisse\EasyAdminPlusBundle\Generator\Command\GeneratorCleanCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:generator:cleanup }
+    cisse.easy_admin_plus.command.generator.entity:
+        class: Cisse\EasyAdminPlusBundle\Generator\Command\GeneratorEntityCommand
+        tags:
+            -  { name: console.command, command: cisse:easy-admin-plus:generator:entity }

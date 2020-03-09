@@ -1,0 +1,35 @@
+{
+    "name": "cisse/easyadmin-plus-bundle",
+    "type": "symfony-bundle",
+    "description": "Cisse/EasyAdminPlusBundle",
+    "keywords": [
+        "Symfony",
+        "Bundle",
+        "Cisse",
+        "EasyAdminPlusBundle",
+        "EasyAdminBundle",
+        "Admin"
+    ],
+    "homepage": "https://github.com/moulayecisse/EasyAdminPlusBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Moulaye CISSE",
+            "email": "moulaye.c@gmail.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1",
+        "easycorp/easyadmin-bundle": "^2.0.0"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Cisse\\EasyAdminPlusBundle\\": "src/"
+        }
+    }
+}

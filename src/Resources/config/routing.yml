@@ -1,0 +1,12 @@
+cisse_easy_admin_plus_login:
+    path: /login
+    defaults:
+        _controller: CisseEasyAdminPlusBundle:Admin:login
+
+cisse_easy_admin_plus_logout:
+    path: /logout
+
+cisse_easy_admin_plus_translations:
+    path: /translations
+    defaults:
+        _controller: CisseEasyAdminPlusBundle:Admin:translations
