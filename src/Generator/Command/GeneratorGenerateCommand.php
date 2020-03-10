@@ -2,7 +2,7 @@
 
 namespace Cisse\EasyAdminPlusBundle\Generator\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Cisse\EasyAdminPlusBundle\Generator\Exception\RuntimeCommandException;
 
-class GeneratorGenerateCommand extends ContainerAwareCommand
+class GeneratorGenerateCommand extends Command
 {
     /** @var SymfonyStyle $io */
     private $io;
