@@ -2,7 +2,7 @@
 
 namespace Cisse\EasyAdminPlusBundle\Auth\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Cisse\EasyAdminPlusBundle\Entity\User;
 use Cisse\EasyAdminPlusBundle\Auth\Event\EasyAdminPlusAuthEvents;
 
-class UserAddRolesCommand extends ContainerAwareCommand
+class UserAddRolesCommand extends Command
 {
     protected function configure()
     {

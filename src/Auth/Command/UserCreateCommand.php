@@ -2,7 +2,7 @@
 
 namespace Cisse\EasyAdminPlusBundle\Auth\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Cisse\EasyAdminPlusBundle\Entity\User;
 use Cisse\EasyAdminPlusBundle\Auth\Event\EasyAdminPlusAuthEvents;
 
-class UserCreateCommand extends ContainerAwareCommand
+class UserCreateCommand extends Command
 {
     protected function configure()
     {

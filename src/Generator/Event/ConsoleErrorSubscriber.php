@@ -2,7 +2,7 @@
 
 namespace Cisse\EasyAdminPlusBundle\Generator\Event;
 
-use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
+use Cisse\EasyAdminPlusBundle\Generator\Exception\RuntimeCommandException;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
