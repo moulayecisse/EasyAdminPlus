@@ -2,10 +2,9 @@
 
 namespace Cisse\EasyAdminPlusBundle\Controller;
 
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-use Cisse\EasyAdminPlusBundle\Controller\AdminControllerTrait;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 
-class AdminController extends BaseAdminController
+class AdminController extends EasyAdminController
 {
     use AdminControllerTrait;
 }
