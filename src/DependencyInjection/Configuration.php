@@ -135,8 +135,8 @@ class Configuration implements ConfigurationInterface
             return false === is_array($v);
         };
 
-        $treeBuilder = new TreeBuilder('cisse_easy_admin_plus');
-        $node = $this->getRootNode($treeBuilder, 'methods');
+        $treeBuilder = new TreeBuilder('methods');
+        $node = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('methods');
 
         $node
             ->addDefaultsIfNotSet()
@@ -215,8 +215,8 @@ class Configuration implements ConfigurationInterface
             '/bundles/cksourceckfinder/ckfinder/ckfinder.js',
         ];
 
-        $treeBuilder = new TreeBuilder('cisse_easy_admin_plus');
-        $node = $this->getRootNode($treeBuilder, 'assets');
+        $treeBuilder = new TreeBuilder('assets');
+        $node = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('assets');
 
         $node
             ->addDefaultsIfNotSet()
@@ -263,8 +263,8 @@ class Configuration implements ConfigurationInterface
             ],
         ];
 
-        $treeBuilder = new TreeBuilder('cisse_easy_admin_plus');
-        $node = $this->getRootNode($treeBuilder, 'sort');
+        $treeBuilder = new TreeBuilder('sort');
+        $node = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('sort');
 
         $node
             ->addDefaultsIfNotSet()
@@ -308,8 +308,8 @@ class Configuration implements ConfigurationInterface
             'show',
         ];
 
-        $treeBuilder = new TreeBuilder('cisse_easy_admin_plus');
-        $node = $this->getRootNode($treeBuilder, 'fields');
+        $treeBuilder = new TreeBuilder('fields');
+        $node = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('fields');
 
         $node
             ->addDefaultsIfNotSet()
@@ -342,8 +342,8 @@ class Configuration implements ConfigurationInterface
             'delete' => 'trash',
         ];
 
-        $treeBuilder = new TreeBuilder('cisse_easy_admin_plus');
-        $node = $this->getRootNode($treeBuilder, 'icons');
+        $treeBuilder = new TreeBuilder('icons');
+        $node = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('icons');
 
         $node
             ->addDefaultsIfNotSet()
