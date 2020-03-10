@@ -15,4 +15,5 @@ class CisseEasyAdminPlusBundle extends Bundle
 
         $container->addCompilerPass(new TwigPathPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
     }
+
 }
