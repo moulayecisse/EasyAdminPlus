@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Validator\ConstraintViolation;
 use Cisse\EasyAdminPlusBundle\Entity\User;
@@ -13,6 +14,17 @@ use Cisse\EasyAdminPlusBundle\Auth\Event\EasyAdminPlusAuthEvents;
 
 class UserCreateCommand extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container, string $name = null)
+    {
+        parent::__construct($name);
+        $this->container = $container;
+    }
+
     protected function configure()
     {
         $this
@@ -29,7 +41,7 @@ class UserCreateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = $this->getContainer();
+        $container = $this->container;
         $em = $container->get('doctrine')->getManager();
         $validator = $container->get('validator');
         $dispatcher = $container->get('event_dispatcher');

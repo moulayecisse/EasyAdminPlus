@@ -3,6 +3,7 @@
 namespace Cisse\EasyAdminPlusBundle\Generator\Command;
 
 use Cisse\EasyAdminPlusBundle\Generator\Exception\RuntimeCommandException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,6 +14,17 @@ use Symfony\Component\Console\Input\InputDefinition;
 
 class GeneratorEntityCommand extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container, string $name = null)
+    {
+        parent::__construct($name);
+        $this->container = $container;
+    }
+
     protected function configure(): void
     {
         $this
@@ -29,8 +41,8 @@ class GeneratorEntityCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $dirProject = $this->getContainer()->getParameter('kernel.project_dir');
-        $entiyManager = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $dirProject = $this->container->getParameter('kernel.project_dir');
+        $entiyManager = $this->container->get('doctrine.orm.entity_manager');
         $helper = $this->getHelper('question');
         $entitiesRawName = $input->getArgument('entity');
         $entitiesMetaData = [];
@@ -68,7 +80,7 @@ the generation process is stopped</info></comment>');
         }
 
         try {
-            $eaTool = $this->getContainer()->get('cisse.easy_admin_plus.generator.entity');
+            $eaTool = $this->container->get('cisse.easy_admin_plus.generator.entity');
             $eaTool->run($entitiesMetaData, $this);
         } catch (RuntimeCommandException $e) {
             $output->writeln('<error>'.$e->getMessage().'</error>');

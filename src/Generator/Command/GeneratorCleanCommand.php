@@ -5,9 +5,21 @@ namespace Cisse\EasyAdminPlusBundle\Generator\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GeneratorCleanCommand extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container, string $name = null)
+    {
+        parent::__construct($name);
+        $this->container = $container;
+    }
+
     protected function configure(): void
     {
         $this
@@ -18,7 +30,7 @@ class GeneratorCleanCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $container = $this->getContainer();
+        $container = $this->container;
         $dirProject = $container->getParameter('kernel.project_dir');
 
         if (!is_dir($dirProject.'/config/packages/easy_admin')) {

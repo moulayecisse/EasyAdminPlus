@@ -11,9 +11,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Cisse\EasyAdminPlusBundle\Generator\Exception\RuntimeCommandException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GeneratorGenerateCommand extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container, string $name = null)
+    {
+        parent::__construct($name);
+        $this->container = $container;
+    }
+
     /** @var SymfonyStyle $io */
     private $io;
 
@@ -37,7 +49,7 @@ class GeneratorGenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $container = $this->getContainer();
+        $container = $this->container;
         $dirProject = $container->getParameter('kernel.project_dir');
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('A easy admin config file, <info>already exist</info>, do you want to <info>override</info> it [<info>y</info>/n]?', true);
